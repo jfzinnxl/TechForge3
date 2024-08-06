@@ -1,0 +1,33 @@
+create table proprietariu (
+id_proprietario int not null primary key,
+nome varchar(100) not null,
+sexo char(1),
+dt_nascimento date,
+cpf_cnpj varchar(50)
+);
+
+insert into proprietariu (id_proprietario,nome,sexo,dt_nascimento,cpf_cnpj) values (1,'joao','M','2006-10-17','000.000.000-01');
+insert into proprietariu (id_proprietario,nome,sexo,dt_nascimento,cpf_cnpj) values (2, 'vitor','M', '1999-10-18','000.000.000-01');
+insert into proprietariu (id_proprietario,nome,sexo,dt_nascimento,cpf_cnpj) values (3, 'gabriel','M', '1997-11-20','000.000.000-01');
+insert into proprietariu (id_proprietario,nome,sexo,dt_nascimento,cpf_cnpj) values (4, 'fernanda','F', '2000-04-20','000.000.000-01');
+insert into proprietariu (id_proprietario,nome,sexo,dt_nascimento,cpf_cnpj) values (5, 'gabriela','F', '1998-04-28','000.000.000-01');
+
+select * from proprietariu;
+
+create table veiculo (
+id_veiculo int primary key,
+tipo char(1) not null,
+marca varchar(50),
+modelo varchar(50),
+placa varchar(10) not null,
+cor varchar(50),
+id_proprietario int,
+foreign key (id_proprietario) references
+proprietariu(id_proprietario)
+);
+
+insert into veiculo (id_veiculo,tipo,marca,modelo,placa,cor) values (1,'c','vw','gol','abc-1234','branco');
+insert into veiculo (id_veiculo,tipo,marca,modelo,placa,cor,id_proprietario) values (2, 'm','honda','fan 160','abd-1235','preta',2)
+insert into veiculo (id_veiculo,tipo,marca,modelo,placa,cor,id_proprietario) values (3,'m','honda','hornet','abe-1324','vermelha',3)
+
+select * from veiculo;
