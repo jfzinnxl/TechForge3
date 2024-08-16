@@ -1,0 +1,65 @@
+create database joaofelipe_revisao;
+
+use joaofelipe_revisao;
+
+create table vendedor( 
+   id_vendedor int not null primary key,
+   NOME VARCHAR(60),
+   TEL VARCHAR(25),
+   EMAIL VARCHAR(60)
+);
+
+create table cliente(
+   id_cliente int not null primary key,
+   NOME VARCHAR(60),
+   TEL VARCHAR(25),
+   CPF VARCHAR(20),
+   RUA VARCHAR(100),
+   CEP VARCHAR(10),
+   CIDADE VARCHAR(50),
+   ESTADO CHAR (2),
+   NUMERO VARCHAR(15),
+   DT_CADASTRO DATE,
+   DT_NASCIMENTO DATE
+);
+
+create table FORMA_PGTO (
+   ID_FORMA_PGTO INT not null primary key,
+   DESCRICAO VARCHAR(60),
+   QUANTIDADE INT
+);
+
+create table PRODUTO (
+   ID_PRODUTO INT not null primary key,
+   MODELO VARCHAR(60),
+   MARCA VARCHAR(60),
+   EMAIL VARCHAR(60),
+   COR VARCHAR(60),
+   QUANTIDADE INT,
+   VL_CUSTO DECIMAL(14,2),
+   VL_VENDA DECIMAL(14,2)
+); 
+
+create table VENDA (
+   ID_VENDA INT not null primary key,
+   DT_VENDA DATE,
+   id_vendedor int,
+   id_cliente int,
+   ID_FORMA_PGTO INT,
+   foreign key(id_vendedor) references VENDEDOR(id_vendedor),
+   foreign key(id_cliente) references CLIENTE(id_cliente),
+   foreign key(id_forma_pgto) references forma_pgto(id_forma_pgto)
+);
+
+create table itens_ordem (
+ID_VENDA INT not null,
+ID_PRODUTO INT not null,
+QT_VENDA INT not null,
+VL_VENDA DECIMAL(14,2),
+primary key (ID_VENDA, ID_PRODUTO),
+foreign key(ID_VENDA) references VENDA(ID_VENDA),
+foreign key(ID_PRODUTO) references PRODUTO(ID_PRODUTO)
+);
+
+
+show TABLES;
