@@ -1,0 +1,75 @@
+calculo 
+
+public interface Calculo {
+    public Double calcular (Double a, Double b);
+}
+
+main.java
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        /**
+         * SOMAR 5 5
+         * A soma de 5 + 5 = 10
+         * DIVIDIR 5 5
+         * A divisão de 5 / 5 é = 1
+         */
+
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("Digite o comando");
+            String comando = sc.nextLine();
+
+            CalculoBuilder calculoBuilder = new CalculoBuilder(comando);
+        }
+    }
+}
+
+calculobuilder
+
+public class CalculoBuilder {
+    public  CalculoBuilder(String comando) {
+        String[] comandos = comando.split(" ");
+        Double a = Double.parseDouble(comandos[1]);
+        Double b = Double.parseDouble(comandos[2]);
+        String operacao = comandos[0];
+
+        switch (operacao.toUpperCase()) {
+            case "DIVISAO":
+                System.out.println("Divisão");
+                Divisao divisao = new Divisao();
+                System.out.println(divisao.calcular(a,b));
+                break;
+            case "MULTIPLICACAO":
+                    System.out.println("Multiplicacao");
+                    Multiplicacao multiplicacao = new Multiplicacao();
+                    System.out.println(multiplicacao.calcular(a,b));
+                    break;
+            default:
+                System.out.println("Comando Inválido");
+
+        }
+    }
+
+}
+
+divisao
+
+public class Divisao implements  Calculo {
+    @Override
+    public Double calcular(Double a, Double b) {
+        return a / b;
+    }
+}
+
+multiplicacao
+
+public class Multiplicacao implements Calculo{
+    @Override
+    public Double calcular(Double a, Double b) {
+        return a * b;
+    }
+}
